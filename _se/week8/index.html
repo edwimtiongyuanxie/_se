@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>緊急急救助手 | Emergency First Aid</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>🚑 緊急急救助手</h1>
+      <p class="subtitle">突發狀況快速參考指南</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="disclaimer">
+      <strong>重要免責聲明：</strong>本網站僅提供一般急救參考資訊，不能取代專業醫療建議。遇到嚴重情況請立即撥打 <strong>119</strong>（台灣）或 <strong>120</strong>（大陸），並儘速就醫。
+    </div>
+
+    <section class="emergency-grid">
+      <button class="card" data-target="cut">
+        <span class="icon">🔪</span>
+        <h2>割傷</h2>
+        <p>刀傷、玻璃劃傷等</p>
+      </button>
+      <button class="card" data-target="burn">
+        <span class="icon">🔥</span>
+        <h2>燙傷 / 燒傷</h2>
+        <p>熱水、油、火焰燙傷</p>
+      </button>
+      <button class="card" data-target="fracture">
+        <span class="icon">🦴</span>
+        <h2>手指骨折</h2>
+        <p>懷疑手指斷裂或錯位</p>
+      </button>
+      <button class="card" data-target="bleeding">
+        <span class="icon">🩸</span>
+        <h2>手腕出血</h2>
+        <p>手腕或手臂大量出血</p>
+      </button>
+      <button class="card" data-target="co">
+        <span class="icon">💨</span>
+        <h2>吸炭昏迷</h2>
+        <p>一氧化碳中毒</p>
+      </button>
+    </section>
+
+    <!-- Detail Panels -->
+    <div id="detail-panels">
+      <!-- 割傷 -->
+      <article id="cut" class="panel hidden">
+        <button class="back-btn">← 返回</button>
+        <h2>🔪 割傷急救步驟</h2>
+        
+        <div class="steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div>
+              <h3>止血</h3>
+              <p>用乾淨紗布、毛巾或衣物直接用力按壓傷口，持續 <strong>5–15 分鐘</strong>，中途不要反覆掀開查看。可同時將傷處抬高於心臟水平。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div>
+              <h3>清潔傷口</h3>
+              <p>出血停止後，用流動的乾淨自來水或生理食鹽水沖洗傷口 1–2 分鐘，清除污物。不要用雙氧水、碘酒直接倒進傷口。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div>
+              <h3>消毒與包紮</h3>
+              <p>傷口周圍用碘伏輕擦消毒。小傷口可貼透氣 OK 繃；較大傷口用無菌紗布覆蓋後用膠帶固定。保持乾淨乾燥，每天更換敷料。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>⚠️ 何時必須就醫？</h3>
+          <ul>
+            <li>按壓 15 分鐘仍無法止血</li>
+            <li>傷口深、邊緣不整齊、長度超過 1–2 公分</li>
+            <li>可見脂肪、肌肉或骨頭</li>
+            <li>被生鏽物、泥土污染的傷口（需打破傷風針）</li>
+            <li>出現紅腫、流膿、發燒等感染跡象</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 燙傷 -->
+      <article id="burn" class="panel hidden">
+        <button class="back-btn">← 返回</button>
+        <h2>🔥 燙傷 / 燒傷急救步驟</h2>
+        <p class="tip">記住口訣：<strong>沖、脫、泡、蓋、送</strong></p>
+        
+        <div class="steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div>
+              <h3>沖 —— 立即冷卻</h3>
+              <p>用 <strong>15–25°C 流動冷水</strong>持續沖洗燙傷部位至少 <strong>15–30 分鐘</strong>（時間越長越好）。不要用冰水或冰塊直接敷，以免造成二次傷害。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div>
+              <h3>脫 —— 小心去除衣物</h3>
+              <p>在沖水的同時或之後，小心脫掉或剪開燙傷處的衣物。若衣物與皮膚黏連，不要硬撕，保留黏連部分。手指/手腕燙傷要立刻取下戒指、手錶，防止腫脹後卡壓。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div>
+              <h3>泡 / 蓋</h3>
+              <p>小面積可繼續冷水浸泡 10–20 分鐘。用無菌紗布或乾淨柔軟布料輕輕覆蓋創面，不要塗抹牙膏、醬油、香油等民間偏方。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">4</span>
+            <div>
+              <h3>送 —— 及時就醫</h3>
+              <p>二度以上燙傷、面積較大、或發生在臉、手、關節、會陰等特殊部位，務必就醫。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>❌ 絕對不要做的事</h3>
+          <ul>
+            <li>不要用冰塊、冰水直接敷</li>
+            <li>不要刺破水泡</li>
+            <li>不要塗抹不明藥膏或偏方</li>
+            <li>大面積燙傷不要長時間浸泡，以免低體溫</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 手指骨折 -->
+      <article id="fracture" class="panel hidden">
+        <button class="back-btn">← 返回</button>
+        <h2>🦴 手指骨折急救步驟</h2>
+        
+        <div class="steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div>
+              <h3>停止活動</h3>
+              <p>立即停止使用受傷手指，不要嘗試彎曲、伸直或甩動，避免骨折端移位加重傷害。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div>
+              <h3>固定</h3>
+              <p>用硬紙板、木條、冰棒棍等作為簡易夾板，用繃帶或膠布輕輕固定受傷手指。可連同相鄰健康手指一起固定（如食指傷可固定中指），保持自然微屈的功能位。不要綁太緊。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div>
+              <h3>冰敷消腫</h3>
+              <p>受傷後 48 小時內用冰袋或包毛巾的冰塊冷敷，每次 15–20 分鐘，每天 3–4 次。不要直接把冰塊貼在皮膚上。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">4</span>
+            <div>
+              <h3>抬高與就醫</h3>
+              <p>將手抬高於心臟水平以減輕腫脹。無論疼痛輕重，都應儘快到醫院骨科做 X 光檢查確認。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>⚠️ 注意事項</h3>
+          <ul>
+            <li>不要自行嘗試把變形的手指扳正</li>
+            <li>若有開放性傷口（骨頭刺破皮膚），先止血再覆蓋，不要把骨頭推回去</li>
+            <li>手指末端變白、變紫或感覺麻木，表示血液循環可能受影響，需緊急就醫</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 手腕出血 -->
+      <article id="bleeding" class="panel hidden">
+        <button class="back-btn">← 返回</button>
+        <h2>🩸 手腕出血急救步驟</h2>
+        
+        <div class="steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div>
+              <h3>直接壓迫止血</h3>
+              <p>用乾淨紗布、毛巾或衣物緊緊按壓傷口，持續至少 <strong>5–15 分鐘</strong>（動脈出血可能需要更久）。中途不要反覆掀開。若血滲出，再疊加紗布繼續壓，不要移除原有敷料。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div>
+              <h3>抬高傷肢</h3>
+              <p>在壓迫的同時，將手臂抬高於心臟水平，利用重力減緩出血。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div>
+              <h3>加壓包紮</h3>
+              <p>止血後用繃帶或布條加壓包紮，鬆緊以能伸入一指為宜，避免過緊影響血液循環。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">4</span>
+            <div>
+              <h3>動脈出血特別處理</h3>
+              <p>若血液呈鮮紅色、噴射狀（動脈出血），直接壓迫無效時，可按壓傷口近心端（靠近心臟側）的動脈搏動點（如上臂內側肱動脈），同時持續壓迫傷口，並立即求救。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>🚨 緊急情況</h3>
+          <ul>
+            <li>噴射狀動脈出血、短時間大量失血</li>
+            <li>出現面色蒼白、冷汗、頭暈、意識模糊（可能休克）</li>
+            <li>按壓 15–20 分鐘仍無法止血</li>
+          </ul>
+          <p>立即撥打 <strong>119</strong>，持續壓迫止血直到救護人員到達。</p>
+        </div>
+      </article>
+
+      <!-- 一氧化碳中毒 -->
+      <article id="co" class="panel hidden">
+        <button class="back-btn">← 返回</button>
+        <h2>💨 吸炭 / 一氧化碳中毒急救</h2>
+        
+        <div class="steps">
+          <div class="step">
+            <span class="num">1</span>
+            <div>
+              <h3>確保自身安全</h3>
+              <p>進入現場前先開窗通風，關閉炭火、煤氣等來源。救援者自己也要避免中毒，必要時用濕毛巾捂住口鼻。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">2</span>
+            <div>
+              <h3>迅速脫離現場</h3>
+              <p>立即將患者轉移到空氣新鮮、通風良好的地方。解開領口、保持呼吸道通暢，注意保暖。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">3</span>
+            <div>
+              <h3>觀察與求救</h3>
+              <p>讓患者側臥（預防嘔吐物吸入），保持安靜休息。立即撥打 <strong>119</strong>，告知可能為一氧化碳中毒。</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="num">4</span>
+            <div>
+              <h3>心肺復甦（如必要）</h3>
+              <p>若患者無呼吸、無心跳，立即開始 CPR（胸外按壓 30 次 + 人工呼吸 2 次），直到救護人員到達或恢復呼吸心跳。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h3>⚠️ 重要提醒</h3>
+          <ul>
+            <li>一氧化碳無色無味，中毒後可能昏迷，黃金救治時間約 4–6 小時內</li>
+            <li>即使清醒，也可能有遲發性腦病，務必就醫進行高壓氧等治療</li>
+            <li>不要在密閉空間使用炭火取暖或燒水</li>
+            <li>建議安裝一氧化碳警報器</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>本網站僅供參考，緊急情況請立即撥打 <strong>119</strong></p>
+      <p class="small">資料來源：Mayo Clinic、國際急救指南、國內衛教資料整理</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
