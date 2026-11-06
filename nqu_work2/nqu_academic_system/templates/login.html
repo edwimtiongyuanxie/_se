@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}登入 - 國立金門大學 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="login-box">
+    <div class="card">
+        <div class="login-header">
+            <h3 class="mb-1"><i class="bi bi-mortarboard-fill"></i></h3>
+            <h4 class="mb-0">國立金門大學</h4>
+            <p class="mb-0 opacity-75">校務資訊系統</p>
+        </div>
+        <div class="card-body p-4">
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="mb-3">
+                    <label class="form-label">學號</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                        <input type="text" name="student_id" class="form-control" placeholder="請輸入學號" required autofocus>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">密碼</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" name="password" class="form-control" placeholder="請輸入密碼" required>
+                    </div>
+                    <div class="form-text">新生預設密碼為身分證後四碼</div>
+                </div>
+                <button type="submit" class="btn btn-nqu w-100 py-2">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> 登入系統
+                </button>
+            </form>
+
+            <hr class="my-4">
+            <div class="small text-muted">
+                <p class="fw-bold mb-2">測試帳號：</p>
+                <ul class="mb-0 ps-3">
+                    <li>11201001 / 1234（王小明・資工）</li>
+                    <li>11202015 / 5678（陳美華・企管）</li>
+                    <li>11303008 / 9012（林志豪・觀光）</li>
+                    <li>11104022 / 3456（張雅婷・護理）</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

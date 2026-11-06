@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}個人資料 - 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-house-door me-2"></i>系統首頁</a>
+                <a class="nav-link active" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>個人資料</a>
+                <a class="nav-link" href="{{ url_for('courses') }}"><i class="bi bi-journal-plus me-2"></i>選課作業</a>
+                <a class="nav-link" href="{{ url_for('my_courses') }}"><i class="bi bi-calendar3 me-2"></i>我的課表</a>
+                <a class="nav-link" href="{{ url_for('grades') }}"><i class="bi bi-bar-chart me-2"></i>成績查詢</a>
+                <a class="nav-link" href="{{ url_for('leave') }}"><i class="bi bi-file-earmark-medical me-2"></i>請假申請</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header"><i class="bi bi-person-badge me-2"></i>學生個人資料</div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <th width="140" class="text-muted">學號</th>
+                        <td>{{ student.student_id }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">姓名</th>
+                        <td>{{ student.name }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">系所</th>
+                        <td>{{ student.department }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">年級</th>
+                        <td>{{ student.grade }} 年級</td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">電子郵件</th>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-muted">聯絡電話</th>
+                        <td>{{ student.phone }}</td>
+                    </tr>
+                </table>
+                <div class="alert alert-light border mt-3">
+                    <i class="bi bi-info-circle me-1"></i>
+                    如需修改個人資料，請至「學籍記載表」作業或洽教務處註冊組。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

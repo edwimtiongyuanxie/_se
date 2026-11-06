@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}選課作業 - 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-house-door me-2"></i>系統首頁</a>
+                <a class="nav-link" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>個人資料</a>
+                <a class="nav-link active" href="{{ url_for('courses') }}"><i class="bi bi-journal-plus me-2"></i>選課作業</a>
+                <a class="nav-link" href="{{ url_for('my_courses') }}"><i class="bi bi-calendar3 me-2"></i>我的課表</a>
+                <a class="nav-link" href="{{ url_for('grades') }}"><i class="bi bi-bar-chart me-2"></i>成績查詢</a>
+                <a class="nav-link" href="{{ url_for('leave') }}"><i class="bi bi-file-earmark-medical me-2"></i>請假申請</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <span><i class="bi bi-journal-plus me-2"></i>選課作業</span>
+                <span class="badge bg-light text-dark">115學年度第1學期</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>課程代碼</th>
+                                <th>課程名稱</th>
+                                <th>教師</th>
+                                <th>學分</th>
+                                <th>時間</th>
+                                <th>教室</th>
+                                <th>名額</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in courses %}
+                            <tr>
+                                <td><code>{{ c.course_id }}</code></td>
+                                <td>{{ c.course_name }}</td>
+                                <td>{{ c.teacher }}</td>
+                                <td>{{ c.credits }}</td>
+                                <td>週{{ c.day }} {{ c.period }}節</td>
+                                <td>{{ c.classroom }}</td>
+                                <td>
+                                    <span class="{% if c.enrolled >= c.capacity %}text-danger{% else %}text-success{% endif %}">
+                                        {{ c.enrolled }}/{{ c.capacity }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if c.course_id in enrolled_ids %}
+                                        <span class="badge bg-success">已選修</span>
+                                    {% elif c.enrolled >= c.capacity %}
+                                        <span class="badge bg-secondary">已額滿</span>
+                                    {% else %}
+                                        <form method="POST" action="{{ url_for('enroll', course_id=c.course_id) }}" class="d-inline">
+                                            <button type="submit" class="btn btn-nqu btn-sm">選課</button>
+                                        </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

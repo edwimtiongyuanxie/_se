@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}成績查詢 - 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-house-door me-2"></i>系統首頁</a>
+                <a class="nav-link" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>個人資料</a>
+                <a class="nav-link" href="{{ url_for('courses') }}"><i class="bi bi-journal-plus me-2"></i>選課作業</a>
+                <a class="nav-link" href="{{ url_for('my_courses') }}"><i class="bi bi-calendar3 me-2"></i>我的課表</a>
+                <a class="nav-link active" href="{{ url_for('grades') }}"><i class="bi bi-bar-chart me-2"></i>成績查詢</a>
+                <a class="nav-link" href="{{ url_for('leave') }}"><i class="bi bi-file-earmark-medical me-2"></i>請假申請</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <div class="card stat-card">
+                    <div class="number">{{ gpa }}</div>
+                    <div class="text-muted">平均成績點數 (GPA)</div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card stat-card">
+                    <div class="number">{{ total_credits }}</div>
+                    <div class="text-muted">已修總學分</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i class="bi bi-bar-chart-line me-2"></i>歷年成績</div>
+            <div class="card-body">
+                {% if grades %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>學期</th>
+                                <th>課程代碼</th>
+                                <th>課程名稱</th>
+                                <th>教師</th>
+                                <th>學分</th>
+                                <th>成績</th>
+                                <th>成績點</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for g in grades %}
+                            <tr>
+                                <td>{{ g.semester }}</td>
+                                <td><code>{{ g.course_id }}</code></td>
+                                <td>{{ g.course_name }}</td>
+                                <td>{{ g.teacher }}</td>
+                                <td>{{ g.credits }}</td>
+                                <td>
+                                    <span class="fw-bold {% if g.score >= 80 %}text-success{% elif g.score >= 60 %}text-primary{% else %}text-danger{% endif %}">
+                                        {{ g.score }}
+                                    </span>
+                                </td>
+                                <td>{{ g.grade_point }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-4">尚無成績資料。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

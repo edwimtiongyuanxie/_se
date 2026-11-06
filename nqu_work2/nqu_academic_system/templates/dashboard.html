@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}首頁 - 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- 側邊選單 -->
+    <div class="col-md-3 mb-4">
+        <div class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="{{ url_for('dashboard') }}"><i class="bi bi-house-door me-2"></i>系統首頁</a>
+                <a class="nav-link" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>個人資料</a>
+                <a class="nav-link" href="{{ url_for('courses') }}"><i class="bi bi-journal-plus me-2"></i>選課作業</a>
+                <a class="nav-link" href="{{ url_for('my_courses') }}"><i class="bi bi-calendar3 me-2"></i>我的課表</a>
+                <a class="nav-link" href="{{ url_for('grades') }}"><i class="bi bi-bar-chart me-2"></i>成績查詢</a>
+                <a class="nav-link" href="{{ url_for('leave') }}"><i class="bi bi-file-earmark-medical me-2"></i>請假申請</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- 主要內容 -->
+    <div class="col-md-9">
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="bi bi-info-circle me-2"></i>歡迎使用校務資訊系統
+            </div>
+            <div class="card-body">
+                <h5>{{ student.name }} 同學，您好！</h5>
+                <p class="text-muted mb-0">
+                    學號：{{ student.student_id }}　｜　系所：{{ student.department }}　｜　年級：{{ student.grade }} 年級
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="number">{{ enrolled_count }}</div>
+                    <div class="text-muted">本學期已選課程</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="number">{{ total_credits }}</div>
+                    <div class="text-muted">已選總學分</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card stat-card">
+                    <div class="number">{{ pending_leave }}</div>
+                    <div class="text-muted">待審核請假</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i class="bi bi-megaphone me-2"></i>系統公告</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>115學年度第1學期加退選作業開放中</span>
+                        <small class="text-muted">2026-09-01</small>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>請於期限內完成學籍資料核對</span>
+                        <small class="text-muted">2026-08-15</small>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>期末教學評量即將開放填寫</span>
+                        <small class="text-muted">2026-12-01</small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

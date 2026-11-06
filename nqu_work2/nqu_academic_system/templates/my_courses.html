@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}我的課表 - 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-house-door me-2"></i>系統首頁</a>
+                <a class="nav-link" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>個人資料</a>
+                <a class="nav-link" href="{{ url_for('courses') }}"><i class="bi bi-journal-plus me-2"></i>選課作業</a>
+                <a class="nav-link active" href="{{ url_for('my_courses') }}"><i class="bi bi-calendar3 me-2"></i>我的課表</a>
+                <a class="nav-link" href="{{ url_for('grades') }}"><i class="bi bi-bar-chart me-2"></i>成績查詢</a>
+                <a class="nav-link" href="{{ url_for('leave') }}"><i class="bi bi-file-earmark-medical me-2"></i>請假申請</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card mb-4">
+            <div class="card-header"><i class="bi bi-calendar-week me-2"></i>本學期課表</div>
+            <div class="card-body">
+                {% if courses %}
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th width="80">節次</th>
+                                <th>週一</th>
+                                <th>週二</th>
+                                <th>週三</th>
+                                <th>週四</th>
+                                <th>週五</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set periods = ['1-2', '3-4', '5-6'] %}
+                            {% for p in periods %}
+                            <tr>
+                                <td class="fw-bold bg-light">{{ p }}</td>
+                                {% for day in ['一', '二', '三', '四', '五'] %}
+                                <td class="schedule-cell">
+                                    {% for c in schedule[day] %}
+                                        {% if c.period == p %}
+                                            <div class="fw-semibold text-primary">{{ c.course_name }}</div>
+                                            <small class="text-muted">{{ c.classroom }}</small>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-4">目前尚未選修任何課程，請前往「選課作業」選課。</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i class="bi bi-list-check me-2"></i>已選課程清單</div>
+            <div class="card-body">
+                {% if courses %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>課程代碼</th>
+                                <th>課程名稱</th>
+                                <th>教師</th>
+                                <th>學分</th>
+                                <th>時間/教室</th>
+                                <th>選課時間</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for c in courses %}
+                            <tr>
+                                <td><code>{{ c.course_id }}</code></td>
+                                <td>{{ c.course_name }}</td>
+                                <td>{{ c.teacher }}</td>
+                                <td>{{ c.credits }}</td>
+                                <td>週{{ c.day }} {{ c.period }}節 / {{ c.classroom }}</td>
+                                <td><small>{{ c.enroll_time }}</small></td>
+                                <td>
+                                    <form method="POST" action="{{ url_for('drop', course_id=c.course_id) }}" class="d-inline"
+                                          onsubmit="return confirm('確定要退選【{{ c.course_name }}】嗎？');">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">退選</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-3">無已選課程</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

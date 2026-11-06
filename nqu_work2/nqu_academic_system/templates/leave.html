@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}請假申請 - 校務資訊系統{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <div class="sidebar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="{{ url_for('dashboard') }}"><i class="bi bi-house-door me-2"></i>系統首頁</a>
+                <a class="nav-link" href="{{ url_for('profile') }}"><i class="bi bi-person me-2"></i>個人資料</a>
+                <a class="nav-link" href="{{ url_for('courses') }}"><i class="bi bi-journal-plus me-2"></i>選課作業</a>
+                <a class="nav-link" href="{{ url_for('my_courses') }}"><i class="bi bi-calendar3 me-2"></i>我的課表</a>
+                <a class="nav-link" href="{{ url_for('grades') }}"><i class="bi bi-bar-chart me-2"></i>成績查詢</a>
+                <a class="nav-link active" href="{{ url_for('leave') }}"><i class="bi bi-file-earmark-medical me-2"></i>請假申請</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card mb-4">
+            <div class="card-header"><i class="bi bi-pencil-square me-2"></i>新增請假申請</div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">假別</label>
+                            <select name="leave_type" class="form-select" required>
+                                <option value="">請選擇</option>
+                                <option value="事假">事假</option>
+                                <option value="病假">病假</option>
+                                <option value="公假">公假</option>
+                                <option value="喪假">喪假</option>
+                                <option value="其他">其他</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">開始日期</label>
+                            <input type="date" name="start_date" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">結束日期</label>
+                            <input type="date" name="end_date" class="form-control" required>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">請假事由</label>
+                            <textarea name="reason" class="form-control" rows="3" placeholder="請詳細說明請假原因..." required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-nqu">
+                                <i class="bi bi-send me-1"></i>送出申請
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i class="bi bi-clock-history me-2"></i>請假紀錄</div>
+            <div class="card-body">
+                {% if history %}
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>申請時間</th>
+                                <th>假別</th>
+                                <th>日期區間</th>
+                                <th>事由</th>
+                                <th>狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for h in history %}
+                            <tr>
+                                <td><small>{{ h.apply_time }}</small></td>
+                                <td>{{ h.leave_type }}</td>
+                                <td>{{ h.start_date }} ~ {{ h.end_date }}</td>
+                                <td>{{ h.reason }}</td>
+                                <td>
+                                    {% if h.status == '待審核' %}
+                                        <span class="badge bg-warning text-dark">待審核</span>
+                                    {% elif h.status == '核准' %}
+                                        <span class="badge bg-success">核准</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">{{ h.status }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-3">尚無請假紀錄。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
