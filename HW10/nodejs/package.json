@@ -1,0 +1,21 @@
+{
+  "name": "hello-week10-yourname",
+  "version": "1.0.0",
+  "description": "HW10 example package for npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -e \"console.log(require('./index.js').hello('test'))\""
+  },
+  "keywords": [
+    "hw10",
+    "week10",
+    "example"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/HW10.git"
+  },
+  "homepage": "https://github.com/YOUR_GITHUB_USERNAME/HW10#readme"
+}
