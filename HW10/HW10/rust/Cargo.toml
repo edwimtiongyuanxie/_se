@@ -1,5 +1,5 @@
 [package]
-name = "hello-week10-yourname"          # ← 請改成唯一名稱（建議加上學號）
+name = "hello-week10-111210550"          # ← 請改成唯一名稱（建議加上學號）
 version = "0.1.0"
 edition = "2021"
 description = "HW10 example package for crates.io"
